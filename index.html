@@ -1,83 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
 
-    <title>Guardian App</title>
+      <title>Guardian App</title>
 
-    <link href="css/main.css" rel="stylesheet">
+      <link href="css/main.css" rel="stylesheet">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap Core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/scss/Page.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="css/scss/Page.css" rel="stylesheet">
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-      <div id="tfheader">
+        <div id="tfheader">
 
-        <h1> Guardian App </h1>
+          <h1>Guardian News</h1>
 
-        <h7 id="category">Todays News</h2>
+          <h7 id="category">Todays News</h7>
 
-        <form id="tfnewsearch" onsubmit="return find()")>
+          <form id="tfnewsearch" onsubmit="return find()">
+            
+            <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+
+            <input id="add" type="submit" value="Add" class="tfbutton">
           
-          <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+          </form>
 
-          <input type="submit" value="Add" class="tfbutton">
-        
-        </form>
+        <div class="tfclear"></div>
 
-      <div class="tfclear"></div>
+      </div>
 
+      <ul id="myTab" class="nav nav-tabs">
+          <li class="active">
+            <a href="#tech" data-toggle="tab">
+               Tech
+            </a>
+          </li>
+          <li><a href="#sport" data-toggle="tab">
+              Sport
+              </a>
+          </li>
+          <li><a href="#politics" data-toggle="tab">
+              Politics
+              </a>
+          </li>
+      </ul>
+
+    <div id="myTabContent" class="tab-content">
+       <div class="tab-pane fade in active" id="tech">
+            <ol id = 'tech-articles'>
+            </ol>
+       </div>
+
+       <div class="tab-pane fade" id="sport">
+            <ol id = 'sport-articles'>
+            </ol>
+       </div>
+
+       <div class="tab-pane fade" id="politics">
+            <ol id = 'politics-articles'>
+            </ol>
+       </div>
     </div>
 
-    <div id="add" class="addbutton" role="button">Search Categories</div>
-
-
-  <ul id="myTab" class="nav nav-tabs">
-      <li class="active">
-        <a href="#tech" data-toggle="tab">
-           Tech
-        </a>
-      </li>
-      <li><a href="#sport" data-toggle="tab">
-          Sport
-          </a>
-      </li>
-      <li><a href="#politics" data-toggle="tab">
-          Politics
-          </a>
-      </li>
-  </ul>
-
-<div id="myTabContent" class="tab-content">
-   <div class="tab-pane fade in active" id="tech">
-        <ol id = 'tech-articles'>
-        </ol>
-   </div>
-
-   <div class="tab-pane fade" id="sport">
-        <ol id = 'sport-articles'>
-        </ol>
-   </div>
-
-   <div class="tab-pane fade" id="politics">
-        <ol id = 'politics-articles'>
-        </ol>
-   </div>
-</div>
-
-</body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <script src="js/addsearch.js"></script>
 
@@ -89,8 +86,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-
-</body>
+  
+  </body>
 
 </html>
