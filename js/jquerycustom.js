@@ -89,9 +89,6 @@ $(document).ready(function(){
         $('#politics-articles').append(politics_articles_array.join(""));
     	}
 	});
-	
-
-
 
 
 });

@@ -1,8 +1,6 @@
-$(document).ready(function(){
-
 	var cats =[];
 
-	$("#add").click(function(){
+	$("#searchs").click(function(){
 
 		$("#list").html(" ")
 
@@ -26,23 +24,22 @@ $(document).ready(function(){
 
 	});
 
-	$("#tfnewsearch").click(function(){
+	$("#add").click(function(){
 
-	//	$("#categories").html("");
+		$("li").removeClass("active");
 		
+		cats.length = 0;
+
 		cats.push(document.getElementById("input").value);
-		console.log(cats);
 
-		$("#category").html("");
+		$("#category").html("").append(cats);
 
-		if(cats.length == 1){				
-			$("#category").append(cats);
-		}
-		else
-		{
-			$("#category").append(cats + "");
+		for(var i=0; i<cats.length; i++){
+
+			var category = cats[i];
+
+			$("#myTab").append("<li class='active'><a href='#" + category + "' data-toggle='tab'>Added: " + category + "</a></li>")
+
 		}
 
 	});
-
-});
