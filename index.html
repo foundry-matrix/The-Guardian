@@ -11,48 +11,54 @@
 
     <title>Guardian App</title>
 
+    <link href="css/main.css" rel="stylesheet">
+
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/scss/Page.css" rel="stylesheet">
 
-   
-
-
 </head>
 
 <body>
 
-    <h1> Guardian App </h1>
+      <div id="tfheader">
 
-    <h2> Today's News</h2>
+        <h1> Guardian App </h1>
 
-   <!--  <p id="content">
-    </p>
+        <h7 id="category">Todays News</h2>
 
-    <ul id = 'list'>
-    </ul> -->
-    
+        <form id="tfnewsearch" onsubmit="return find()")>
+          
+          <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
 
-    
+          <input type="submit" value="Add" class="tfbutton">
+        
+        </form>
+
+      <div class="tfclear"></div>
+
+    </div>
+
+    <div id="add" class="addbutton" role="button">Search Categories</div>
 
 
-<ul id="myTab" class="nav nav-tabs">
-    <li class="active">
-      <a href="#tech" data-toggle="tab">
-         Tech
-      </a>
-    </li>
-    <li><a href="#sport" data-toggle="tab">
-        Sport
+  <ul id="myTab" class="nav nav-tabs">
+      <li class="active">
+        <a href="#tech" data-toggle="tab">
+           Tech
         </a>
-    </li>
-    <li><a href="#politics" data-toggle="tab">
-        Politics
-        </a>
-    </li>
-</ul>
+      </li>
+      <li><a href="#sport" data-toggle="tab">
+          Sport
+          </a>
+      </li>
+      <li><a href="#politics" data-toggle="tab">
+          Politics
+          </a>
+      </li>
+  </ul>
 
 <div id="myTabContent" class="tab-content">
    <div class="tab-pane fade in active" id="tech">
@@ -71,27 +77,18 @@
    </div>
 </div>
 
-
-
-
-
-
 </body>
 
-    
-
-    
+    <script src="js/addsearch.js"></script>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
 
     <!-- jQuery custom -->
     <script src="js/jquerycustom.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 
 
 </body>
