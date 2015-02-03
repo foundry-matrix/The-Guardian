@@ -1,0 +1,38 @@
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+.row{
+	@include rem("max-width", $maxWidth);
+  @include clearfix();
+	margin:0 auto;
+}
+
+.col{
+  margin-left: 1.6%;
+}
+
+%col {
+  float: left;
+}
+
+@for $i from 1 through $grid-columns {
+
+  .col_#{$i} {
+    @extend %col;
+    width: ($i / $grid-columns) * 100%;
+  }
+
+}
+
+.col:first-child,
+.col_12 {
+  margin-left: 0;
+}
+
+
+// CUSTOM 
+.tab-content {
+  margin-left: 10px; 
+}
