@@ -84,4 +84,29 @@ $(document).ready(function(){
 
 	});
 
+
+	// closing a tab functionality
+	$(".fa-times").click(function(){
+		$(this).remove();
+	});
+
+	$(".fa-times").click(function(){
+		console.log("clicked")
+	});
+
+
+	$("h1").click(function(){
+		$(this).remove();
+	});
+
+	$("h1").click(function(){
+		console.log("clicked");
+	});
+
+	$("li").click(function(){
+		console.log("clicked");
+	});
+
+
+// end of JS
 });
