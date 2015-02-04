@@ -86,12 +86,11 @@ $(document).ready(function(){
 
 
 	// closing a tab functionality
-	$(".fa-times").click(function(){
-		$(this).remove();
-	});
-
-	$(".fa-times").click(function(){
+	
+	$(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
 		console.log("clicked")
+		// $("#myTab li").remove();
+		$(this).parent().remove();
 	});
 
 
