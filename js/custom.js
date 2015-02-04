@@ -26,7 +26,7 @@ $(document).ready(function(){
 			var link  = '<a href="' +article.webUrl + '" id="link">'+article.webTitle +'</a>';
 			var img   = '<img class="audio" src="img/audio.png">';
 			var audio = '<a class="audio_link" id="' + '">' +img +'</a>';
-			var item  = '<li>' +link +audio +'</li>';
+			var item  = '<li>' +link +audio + '</li>';
 			listItems.push(item);
 		})
 
@@ -51,6 +51,9 @@ $(document).ready(function(){
 	categories.map(function(category) {
 		getArticles(category);
 	})
+
+
+	// Adding tab functionality 
 
 	$("#add").click(function(){
 
@@ -79,7 +82,7 @@ $(document).ready(function(){
 		{
 			categories.push(search);
 
-			$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a></li>");
+			$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
 
 			$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
 
