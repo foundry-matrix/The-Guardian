@@ -1,22 +1,31 @@
 $(document).ready(function(){
 
 	// adding an event listener to when the user clicks one of the audio-icons
-	$(document).on('click', ".audio_link" ,function(){
-		var article_index = $(this).attr("id");
-		var article_section = $(this).attr("class").split(" ")[1];
-		readHeadline(article_index,article_section);
+	$(document).on('click', ".audio_link" , function(){
+		if (window.speechSynthesis.speaking == true)
+		{
+			window.speechSynthesis.cancel();
+		} 
+		else
+		{
+			var title = $(this).attr("id");
+			console.log(title);
+			readHeadline(title);
+		} 
 	});
 
 
 	// getting the web speech api to read the message, based upon an article's index (in an array of their titles) and the section (sports,tech,politics) 
-	function readHeadline(index,section){
-		section_array = window[section];
-		title = section_array[index];		
-		var message = new SpeechSynthesisUtterance(title);
-		window.speechSynthesis.speak(message);
-		
+
+
+	function readHeadline(input){	
+	var message = new SpeechSynthesisUtterance(input);
+	var voices = window.speechSynthesis.getVoices();
+	input.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+	window.speechSynthesis.speak(message);
 	}
 
+	// list of categories
 	var categories = ["technology","sport","politics"];
 	var articles = {};
 
@@ -25,7 +34,7 @@ $(document).ready(function(){
 		articles[category].map(function(article){
 			var link  = '<a href="' +article.webUrl + '" id="link">'+article.webTitle +'</a>';
 			var img   = '<img class="audio" src="img/audio.png">';
-			var audio = '<a class="audio_link" id="' + '">' +img +'</a>';
+			var audio = '<a class="audio_link" id="' + article.webTitle  +  '">' +img +'</a>';
 			var item  = '<li>' +link +audio + '</li>';
 			listItems.push(item);
 		})
