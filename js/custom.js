@@ -66,29 +66,45 @@ $(document).ready(function(){
 
 	$("#add").click(function(){
 
+		var exists;
 		var search = document.getElementById("input").value;
-		
-		
-
-		categories.push(search);
-
-		$("#category").html("").append("#"+search);
 
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
 
-		$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+		categories.map(function(category){
+			if (search == category){
+				exists = true;
+			}
+			else{
+				exists = false;
+			}
+		});
 
-		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
+		if (exists)
+		{
+			$("li").addClass("active");
 
-		getArticles(search);
+		//	$("#myTabContent").addClass("active in");
+		}
+		else
+		{
+			categories.push(search);
+
+			$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+
+			$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
+
+			getArticles(search);
+		}
+
+		$("#category").html("").append("#"+search);
 
 	});
 
 	$("a").click(function(){
 
 		var header =  $(this).attr("href");
-		console.log(header);
 		$("#category").html(header);
 
 	});
