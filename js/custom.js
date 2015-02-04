@@ -9,6 +9,7 @@ $(document).ready(function(){
 		else
 		{
 			var title = $(this).attr("id");
+			console.log(title);
 			readHeadline(title);
 		} 
 	});
@@ -16,10 +17,10 @@ $(document).ready(function(){
 
 	// getting the web speech api to read the message, based upon an article's index (in an array of their titles) and the section (sports,tech,politics) 
 
+
 	function readHeadline(input){	
 	var message = new SpeechSynthesisUtterance(input);
 	var voices = window.speechSynthesis.getVoices();
-	console.log(voices);
 	input.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
 	window.speechSynthesis.speak(message);
 	}
@@ -28,45 +29,68 @@ $(document).ready(function(){
 	var categories = ["technology","sport","politics"];
 	var articles = {};
 
-function renderArticles(articles, category) {
-	//appending the tech articles to the DOM
-	var listItems = [];
-	articles[category].map(function(article){
-		var link  = '<a href="' + article.webUrl + '" id="link">'+article.webTitle +'</a>';
-		var img   = '<img class="audio" src="img/audio.png">';
-		var audio = '<a class="audio_link" id="' + article.webTitle +  '">' +img +'</a>';
-		var item  = '<li>' + link + audio +'</li>';
-		listItems.push(item);
+	function renderArticles(articles, category) {
+		var listItems = [];
+		articles[category].map(function(article){
+			var link  = '<a href="' +article.webUrl + '" id="link">'+article.webTitle +'</a>';
+			var img   = '<img class="audio" src="img/audio.png">';
+			var audio = '<a class="audio_link" id="' + article.webTitle  +  '">' +img +'</a>';
+			var item  = '<li>' +link +audio + '</li>';
+			listItems.push(item);
+		})
+
+		var id = '#'+ category +'-articles'
+		$(id).append(listItems.join(""));
+		return;
+	}
+
+	function getArticles(category) {
+		// tech articles
+		$.ajax({
+			url: "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
+			dataType: 'jsonp',
+			success: function(json){
+				articles[category] = json.response.results; // 
+				console.log(articles);
+				renderArticles(articles, category);
+			}
+		});
+	}
+
+	categories.map(function(category) {
+		getArticles(category);
 	})
 
-	var id = '#'+ category + '-articles'
-	$(id).append(listItems.join(""));
-	return;
-}
 
+	// Adding tab functionality 
 
+	$("#add").click(function(){
 
-function getArticles(category) {
-	$.ajax({
-		url: "http://content.guardianapis.com/search?section=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
-		dataType: 'jsonp',
-		success: function(json){
-			articles[category] = json.response.results;
-			renderArticles(articles,category);
-		}
-	})
-}
+		var search = document.getElementById("input").value;
+		
+		
 
+		categories.push(search);
 
+		$("#category").html("").append("#"+search);
 
-categories.map(function(category) {
-	getArticles(category);
-})
+		$("li").removeClass("active");
+		$("div").removeClass("active in");
 
+		$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
 
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
 
+		getArticles(search);
+
+	});
+
+	$("a").click(function(){
+
+		var header =  $(this).attr("href");
+		console.log(header);
+		$("#category").html(header);
+
+	});
 
 });
-
-
-

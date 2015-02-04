@@ -110,4 +110,10 @@ button {
 .tab-content {
   margin-left: 10px; }
 
+.fa-times {
+  float: right;
+  position: relative;
+  bottom: 42px;
+  font-size: 0.75em; }
+
 /*# sourceMappingURL=Page.css.map */
