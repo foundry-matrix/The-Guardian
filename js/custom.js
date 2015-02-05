@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 
 
@@ -54,6 +52,12 @@ $(document).ready(function(){
 			listItems.push(item);
 		})
 
+		$("li").removeClass("active");
+		$("div").removeClass("active in");
+
+		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
+
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
 		return;
@@ -81,57 +85,64 @@ $(document).ready(function(){
 
 		var exists;
 		var search = document.getElementById("input").value;
+		var searchLower = search.toLowerCase();
 
-			
-
-		$("li").removeClass("active");
-		$("div").removeClass("active in");
-
-		categories.map(function(category){
-			if (search == category){
+		for (var i=0; i<categories.length; i++){
+			if (searchLower == categories[i]){
 				exists = true;
+				break;
 			}
 			else{
 				exists = false;
-			}
-		});
-
+			}		
+		}
+		
 		if (exists)
 		{
-			$("li").addClass("active");
+			$("li").removeClass("active");
+			$("div").removeClass("active in");	
 
-		//	$("#myTabContent").addClass("active in");
+			$("#tab-" + searchLower).addClass("active");
+			$("#" + searchLower + "link").addClass("active in");	
 		}
 		else
 		{
-			categories.push(search);
-
-			$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
-
-			$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
-
-			getArticles(search);
+			categories.push(searchLower);
+			getArticles(searchLower);
 		}
 
 		$("#category").html("").append("#"+search);
 
+		console.log(categories);
 	});
-
-	$("a").click(function(){
-
-		var header =  $(this).attr("href");
-		$("#category").html(header);
-
-	});
-
-
 
 	// closing a tab functionality
 	
-	$(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
-		$(this).parent().remove();
-	});
+	 $(document).on("click", ".fa-times",function(){  
+	  //for elements inserted via jquery, use this document thing.  
+	  
+	 	var category = $(this).attr("id");
+	 	//var categoryindex = categories.indexOf(category) ;
 
+	 	$("#tab-" + category).remove();
+	 	$("#" + category + "link").remove();
+
+	 	var index = $.inArray(category, categories);
+	 	if(index != -1){
+	 		categories.splice(index,1);
+	 	}
+
+	 	var categoryindex = categories[0];
+	 	console.log(categoryindex);
+
+	 	$("li").removeClass("active");
+		$("div").removeClass("active in");	
+
+		$("#tab-" + categoryindex).addClass("active");
+		$("#" + categoryindex + "link").addClass("active in");	
+	 });
+
+	 console.log(categories);
 
 // end of JS
 });
