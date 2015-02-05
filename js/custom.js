@@ -52,9 +52,11 @@ $(document).ready(function(){
 			listItems.push(item);
 		})
 
-		$("#myTab").append("<li id='" + category + "'class=''><a href='#" + category + "' data-toggle='tab'>Added: " + category + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+		$("li").removeClass("active");
+		$("div").removeClass("active in");
 
-		$("#myTabContent").append("<div class='tab-pane fade' id='" + category + "'><ol id = '" + category + "-articles'></ol></div>");
+		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
@@ -85,9 +87,6 @@ $(document).ready(function(){
 		var search = document.getElementById("input").value;
 		var searchLower = search.toLowerCase();
 
-		$("li").removeClass("active");
-		$("div").removeClass("active in");
-
 		for (var i=0; i<categories.length; i++){
 			if (searchLower == categories[i]){
 				exists = true;
@@ -100,65 +99,50 @@ $(document).ready(function(){
 		
 		if (exists)
 		{
+			$("li").removeClass("active");
+			$("div").removeClass("active in");	
 
-		//	$("li").addClass("active");
-
-		//	$("#myTabContent").addClass("active in");
+			$("#tab-" + searchLower).addClass("active");
+			$("#" + searchLower + "link").addClass("active in");	
 		}
 		else
 		{
 			categories.push(searchLower);
-
-		//	$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
-
-		//	$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
-
-			getArticles(search);
+			getArticles(searchLower);
 		}
 
 		$("#category").html("").append("#"+search);
 
-	});
-
-	$(document).on("click", "a",function(){
-		console.log("clickkk");
-		$(this).addClass("active");
-
+		console.log(categories);
 	});
 
 	// closing a tab functionality
 	
-	// $(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
-	// 	$(this).parent().remove();
-	// 	$("div").removeClass("active in");
-	// 	$("#sport").click();
-		
-	// });
-		
+	 $(document).on("click", ".fa-times",function(){  
+	  //for elements inserted via jquery, use this document thing.  
+	  
+	 	var category = $(this).attr("id");
+	 	//var categoryindex = categories.indexOf(category) ;
 
-	
+	 	$("#tab-" + category).remove();
+	 	$("#" + category + "link").remove();
 
-	$(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
-		
-		console.log(categories);
-	categories.splice( $.inArray(category, categories), 1 );  //this removes the search term from the categories array. 
-		console.log(categories);
+	 	var index = $.inArray(category, categories);
+	 	if(index != -1){
+	 		categories.splice(index,1);
+	 	}
 
-		
-	});
+	 	var categoryindex = categories[0];
+	 	console.log(categoryindex);
 
+	 	$("li").removeClass("active");
+		$("div").removeClass("active in");	
 
+		$("#tab-" + categoryindex).addClass("active");
+		$("#" + categoryindex + "link").addClass("active in");	
+	 });
 
-
-
-	$("h1").click(function(){
-		console.log(" sportclicked");
-	});
-
-	$("#sport").click(function(){
-		console.log(" h1clicked");
-	});
-
+	 console.log(categories);
 
 // end of JS
 });
