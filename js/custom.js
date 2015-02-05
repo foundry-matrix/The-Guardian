@@ -1,29 +1,44 @@
+
+
 $(document).ready(function(){
+
 
 	// adding an event listener to when the user clicks one of the audio-icons
 	$(document).on('click', ".audio_link" , function(){
 		if (window.speechSynthesis.speaking == true)
 		{
 			window.speechSynthesis.cancel();
-		} 
+		}
 		else
 		{
 			var title = $(this).attr("id");
-			console.log(title);
 			readHeadline(title);
 		} 
 	});
 
+	voiceSelector = document.getElementById("voice");
 
-	// getting the web speech api to read the message, based upon an article's index (in an array of their titles) and the section (sports,tech,politics) 
+	// event thats triggered when the voices are ready. Populates the voice selector with options
+	window.speechSynthesis.onvoiceschanged = function(){
+	voices = speechSynthesis.getVoices();
+	voices.map(function(voice){
+		var option = document.createElement('option');
+		option.name = voice.name;
+		option.innerHTML = voice.name;
+		voiceSelector.appendChild(option);
+	});
 
+}
 
+	// getting the web speech api to read the message, and fetching the choosen voice
 	function readHeadline(input){	
-	var message = new SpeechSynthesisUtterance(input);
-	var voices = window.speechSynthesis.getVoices();
-	input.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+	message = new SpeechSynthesisUtterance(input);
+	message.voice = voices.filter(function(voice_alternative){ 
+		return voice_alternative.name == voiceSelector.value; 
+	})[0];
 	window.speechSynthesis.speak(message);
 	}
+
 
 	// list of categories
 	var categories = ["technology","sport","politics"];
@@ -51,7 +66,6 @@ $(document).ready(function(){
 			dataType: 'jsonp',
 			success: function(json){
 				articles[category] = json.response.results; // 
-				console.log(articles);
 				renderArticles(articles, category);
 			}
 		});
@@ -63,11 +77,16 @@ $(document).ready(function(){
 
 
 	// Adding tab functionality 
-
 	$("#add").click(function(){
 
 		var exists;
 		var search = document.getElementById("input").value;
+
+			
+		categories.push(search);
+
+		$("#category").html("").append("#"+search);
+
 
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
