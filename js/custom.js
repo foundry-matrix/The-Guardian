@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
 
 
@@ -54,6 +52,10 @@ $(document).ready(function(){
 			listItems.push(item);
 		})
 
+		$("#myTab").append("<li id='" + category + "'class='active'><a href='#" + category + "' data-toggle='tab'>Added: " + category + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "'><ol id = '" + category + "-articles'></ol></div>");
+
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
 		return;
@@ -81,38 +83,35 @@ $(document).ready(function(){
 
 		var exists;
 		var search = document.getElementById("input").value;
-
-			
-		categories.push(search);
-
-		$("#category").html("").append("#"+search);
-
+		var searchLower = search.toLowerCase();
 
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
 
-		categories.map(function(category){
-			if (search == category){
+		for (var i=0; i<categories.length; i++){
+			if (searchLower == categories[i]){
 				exists = true;
+				break;
 			}
 			else{
 				exists = false;
-			}
-		});
-
+			}		
+		}
+		
 		if (exists)
 		{
-			$("li").addClass("active");
+
+		//	$("li").addClass("active");
 
 		//	$("#myTabContent").addClass("active in");
 		}
 		else
 		{
-			categories.push(search);
+			categories.push(searchLower);
 
-			$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+		//	$("#myTab").append("<li class='active'><a href='#" + search + "' data-toggle='tab'>Added: " + search + "</a>" + '<i class="fa fa-times">' + "</i></li>");
 
-			$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
+		//	$("#myTabContent").append("<div class='tab-pane fade active in' id='" + search + "'><ol id = '" + search + "-articles'></ol></div>");
 
 			getArticles(search);
 		}
@@ -121,14 +120,13 @@ $(document).ready(function(){
 
 	});
 
+	//$(document).on("click", ".fa-times",function(){
 	$("a").click(function(){
 
 		var header =  $(this).attr("href");
 		$("#category").html(header);
 
 	});
-
-
 
 	// closing a tab functionality
 	
