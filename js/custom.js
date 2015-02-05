@@ -1,10 +1,13 @@
 
 
 $(document).ready(function(){
-
+	console.log("jquery ready");
 
 	// adding an event listener to when the user clicks one of the audio-icons
+	
+
 	$(document).on('click', ".audio_link" , function(){
+		console.log(".audio_link clicked");
 		if (window.speechSynthesis.speaking == true)
 		{
 			window.speechSynthesis.cancel();
@@ -16,6 +19,23 @@ $(document).ready(function(){
 		} 
 	});
 
+/*
+
+	$(".audio_link").click( function(){
+		console.log(".audio_link clicked");
+
+		if (window.speechSynthesis.speaking == true)
+		{
+			window.speechSynthesis.cancel();
+		}
+		else
+		{
+			var title = $(this).attr("id");
+			readHeadline(title);
+		} 
+	});
+
+*/
 	voiceSelector = document.getElementById("voice");
 
 	// event thats triggered when the voices are ready. Populates the voice selector with options
