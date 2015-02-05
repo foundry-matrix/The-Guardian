@@ -109,4 +109,16 @@ $(document).ready(function(){
 
 	});
 
+
+
+	// closing a tab functionality
+	
+	$(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
+		$(this).parent().remove();
+	});
+
+
+// end of JS
 });
+
+
