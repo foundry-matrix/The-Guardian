@@ -83,10 +83,6 @@ $(document).ready(function(){
 		var search = document.getElementById("input").value;
 
 			
-		categories.push(search);
-
-		$("#category").html("").append("#"+search);
-
 
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
