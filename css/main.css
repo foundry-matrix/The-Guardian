@@ -3,13 +3,30 @@
 	margin: 1px 1px 3px 5px;
 }
 
+#title{
+	padding: 5px;
+}
+div.option{
+	display:inline;
+	margin-left: 5px;
+}
+
+.select_voice{
+	display: inline;
+	width: 200px;
+	height: 30px;
+	margin-bottom: 0px;
+	border: 1px solid #0076a3;
+
+}
 
 #tfheader{
 	background-color:#c3dfef;
 }
 #tfnewsearch{
 	float:right;
-	padding:20px;
+	padding-bottom: 8px;
+	margin-right: 6px;
 	display: inline-block;
 }
 #count{

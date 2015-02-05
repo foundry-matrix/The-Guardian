@@ -12,10 +12,11 @@
     <title>The Guardian App</title>
 
 
-      <link href="css/main.css" rel="stylesheet">
 
       <!-- Bootstrap Core CSS -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
+
+      <link href="css/main.css" rel="stylesheet">
 
        <!-- font awesome -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -31,10 +32,13 @@
 
         <div id="tfheader">
 
-          <h1>Guardian News</h1>
+          <h1 id="title">Guardian News</h1>
 
           <h7 id="category">Todays News</h7>
-
+<br>
+<div class="option">
+    <select name="voice" id="voice" class="form-control select_voice"></select>
+</div>
           <form id="tfnewsearch" onsubmit="return find()">
             
             <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
@@ -53,12 +57,6 @@
 
       <div id="myTabContent" class="tab-content">
       </div>
-
- 
-<div class="option">
-    <label for="voice">Voice</label>
-    <select name="voice" id="voice"></select>
-</div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
