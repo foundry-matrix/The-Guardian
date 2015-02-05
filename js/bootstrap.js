@@ -2071,47 +2071,48 @@ if (typeof jQuery === 'undefined') {
       && $.support.transition
       && (($active.length && $active.hasClass('fade')) || !!container.find('> .fade').length)
 
-    function next() {
-      $active
-        .removeClass('active')
-        .find('> .dropdown-menu > .active')
+    $(document).on("click", ".fa-times",
+      function next() {
+        $active
           .removeClass('active')
-        .end()
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', false)
-
-      element
-        .addClass('active')
-        .find('[data-toggle="tab"]')
-          .attr('aria-expanded', true)
-
-      if (transition) {
-        element[0].offsetWidth // reflow for transition
-        element.addClass('in')
-      } else {
-        element.removeClass('fade')
-      }
-
-      if (element.parent('.dropdown-menu')) {
-        element
-          .closest('li.dropdown')
-            .addClass('active')
+          .find('> .dropdown-menu > .active')
+            .removeClass('active')
           .end()
           .find('[data-toggle="tab"]')
+            .attr('aria-expanded', false)
+
+        element
+          .addClass('active')
+          .find('[data-toggle="tab"]')
             .attr('aria-expanded', true)
+
+        if (transition) {
+          element[0].offsetWidth // reflow for transition
+          element.addClass('in')
+        } else {
+          element.removeClass('fade')
+        }
+
+        if (element.parent('.dropdown-menu')) {
+          element
+            .closest('li.dropdown')
+              .addClass('active')
+            .end()
+            .find('[data-toggle="tab"]')
+              .attr('aria-expanded', true)
+        }
+
+        callback && callback()
       }
 
-      callback && callback()
+      $active.length && transition ?
+        $active
+          .one('bsTransitionEnd', next)
+          .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
+        next()
+
+      $active.removeClass('in')
     }
-
-    $active.length && transition ?
-      $active
-        .one('bsTransitionEnd', next)
-        .emulateTransitionEnd(Tab.TRANSITION_DURATION) :
-      next()
-
-    $active.removeClass('in')
-  }
 
 
   // TAB PLUGIN DEFINITION
