@@ -52,9 +52,9 @@ $(document).ready(function(){
 			listItems.push(item);
 		})
 
-		$("#myTab").append("<li id='" + category + "'class='active'><a href='#" + category + "' data-toggle='tab'>Added: " + category + "</a>" + '<i class="fa fa-times">' + "</i></li>");
+		$("#myTab").append("<li id='" + category + "'class=''><a href='#" + category + "' data-toggle='tab'>Added: " + category + "</a>" + '<i class="fa fa-times">' + "</i></li>");
 
-		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "'><ol id = '" + category + "-articles'></ol></div>");
+		$("#myTabContent").append("<div class='tab-pane fade' id='" + category + "'><ol id = '" + category + "-articles'></ol></div>");
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
@@ -120,11 +120,9 @@ $(document).ready(function(){
 
 	});
 
-	//$(document).on("click", ".fa-times",function(){
-	$("a").click(function(){
-
-		var header =  $(this).attr("href");
-		$("#category").html(header);
+	$(document).on("click", "a",function(){
+		console.log("clickkk");
+		$(this).addClass("active");
 
 	});
 
