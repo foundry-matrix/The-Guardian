@@ -113,8 +113,35 @@ $(document).ready(function(){
 
 	// closing a tab functionality
 	
+	// $(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
+	// 	$(this).parent().remove();
+	// 	$("div").removeClass("active in");
+	// 	$("#sport").click();
+		
+	// });
+		
+
+	
+
 	$(document).on("click", ".fa-times",function(){   //for elements inserted via jquery, use this document thing.  
-		$(this).parent().remove();
+		
+		console.log(categories);
+	categories.splice( $.inArray(category, categories), 1 );  //this removes the search term from the categories array. 
+		console.log(categories);
+
+		
+	});
+
+
+
+
+
+	$("h1").click(function(){
+		console.log(" sportclicked");
+	});
+
+	$("#sport").click(function(){
+		console.log(" h1clicked");
 	});
 
 
