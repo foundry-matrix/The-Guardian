@@ -42,6 +42,9 @@ fieldset {
 button {
   cursor: pointer; }
 
+body {
+  font-family: Georgia; }
+
 *,
 *:after,
 *:before {
@@ -114,17 +117,25 @@ button {
   float: none;
   margin: 0 auto; }
 
-.container-fluid {
-  background-color: #bfcddb;
-  border-top: 1px solid  #015c97;
-  padding-top: 20px; }
+.content-wrapper {
+  background-color: white;
+  padding-top: 20px;
+  margin: 0 12%; }
+
+.entire-container {
+  padding: 0 !important; }
 
 #tfheader {
-  background-color: white; }
+  background-color: #004587; }
 
 .homepage-logo {
   width: 37%;
   margin: 30px 0 30px 24px; }
+
+.footer-container {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 14px; }
 
 .fa-times {
   float: right;
@@ -143,7 +154,10 @@ button {
 .nav-tabs {
   padding: 0 23%;
   text-align: center;
-  border-bottom: none !important; }
+  margin-bottom: 16px; }
+
+.nav-tabs > li {
+  margin-bottom: -12px !important; }
 
 .title-container {
   display: block;
@@ -156,13 +170,25 @@ button {
   display: inline-block;
   width: 500px; }
 
+.articles-list li {
+  margin-bottom: 8px; }
+
 .tab-bar {
-  text-align: center; }
+  text-align: center;
+  margin-top: 14px; }
 
 #myTab li {
   display: inline; }
 
+.tftextinput {
+  margin-right: -5px; }
+
 #charSelector {
   text-align: center; }
+
+#character_activator {
+  color: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(#004587), to(#0078a5));
+  background: -moz-linear-gradient(top, #004587, #0078a5); }
 
 /*# sourceMappingURL=Page.css.map */

@@ -42,8 +42,19 @@ float: none;
 margin: 0 auto;
 }
 
-.container-fluid{
-  background-color:#bfcddb;
-  border-top: 1px solid  #015c97;
+.content-wrapper{
+  background-color:white;
+  // border-top: 1px solid  #015c97;
   padding-top:20px;
+  // padding: 0 14%;
+  margin: 0 12%;
 }
+
+
+
+.entire-container{
+  padding: 0!important;
+
+}
+
+
