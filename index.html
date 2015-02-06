@@ -30,36 +30,43 @@
 
   <body>
 
-        <div id="tfheader">
+      <!-- HEADER -->
+      <div id="tfheader">
+            <img class ="homepage-logo" src="img/guardianlogo.jpg">
+            <div class="tfclear"></div>
+      </div>
 
-          <h1 id="title">Guardian News</h1>
+     <!-- TABS, SEARCH AND ARTICLES -->
 
-          <h7 id="category">Todays News</h7>
-<br>
-<div class="option">
-    <select name="voice" id="voice" class="form-control select_voice"></select>
-</div>
-          <form id="tfnewsearch" onsubmit="return find()">
-            
-            <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+     <div class="container">
 
-            <input id="add" type="submit" value="Add" class="tfbutton">
-          
-          </form>
+        <div class="row search-bar">
+            <form id="tfnewsearch" onsubmit="return find()">
+                <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+                <input id="add" type="submit" value="Add" class="tfbutton">
+            </form>
+        </div>
 
-        <div class="tfclear"></div>
+        <div class="row title-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+            </ul>
+        </div>
+
+        <div class="row article-content">
+            <div id="myTabContent" class="tab-content"> </div>
+            <ul id="charSelector"></ul>
+        </div>
+
+
+
 
       </div>
 
-     
-      <ul id="myTab" class="nav nav-tabs">
-      </ul>
 
-      <div id="myTabContent" class="tab-content">
-      </div>
 
-      <ul id="charSelector"></ul>
 
+
+    <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <!-- jQuery -->
