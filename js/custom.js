@@ -111,6 +111,12 @@ $("#Thomas").css('height', "100px");
 	var categories = ["technology","sport","politics"];
 	var articles = {};
 
+	// function setAttributes(element, attrs) {
+	//     for (var i = 1; i < arguments.length; i+=2) {
+	//         element.setAttribute(arguments[i], arguments[i+1]);
+	//  	  }
+	// }
+
 	function renderArticles(articles, category) {
 		var listItems = [];
 		articles[category].map(function(article){
@@ -121,14 +127,23 @@ $("#Thomas").css('height', "100px");
 			listItems.push(item);
 		})
 		
-	//	$("li").removeClass("active");
-	//	$("div").removeClass("active in");
+		$("li").removeClass("active");
+		$("div").removeClass("active in");
+
+		// var li = document.getElementById("myTab").appendChild(document.createElement("li"));
+		// li.setAttribute("id", "tab-" + category);
+		// li.setAttribute("class", "active");
+		// var a = document.getElementById("tab-" + category).appendChild(document.createElement("a"));
+		// a.setAttribute("href", "#" + category + "link");
+		// a.setAttribute("data-toggle", "tab");
+
+		// setAttributes("a", "src", "http://example.com/something.jpeg", "height", "100%");
 
 		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
 		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
 
-		document.getElementById("tab-" + category).className = "";
-		document.getElementById(category + "link").className = "";
+	//	document.getElementById("tab-" + category).className = "";
+	//	document.getElementById(category + "link").className = "";
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
