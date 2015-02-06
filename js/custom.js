@@ -120,14 +120,15 @@ $("#Thomas").css('height', "100px");
 			var item  = '<li>' +link +audio + '</li>';
 			listItems.push(item);
 		})
-
-	//	var li = 
-
-		$("li").removeClass("active");
-		$("div").removeClass("active in");
+		
+	//	$("li").removeClass("active");
+	//	$("div").removeClass("active in");
 
 		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
 		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
+
+		document.getElementById("tab-" + category).className = "";
+		document.getElementById(category + "link").className = "";
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
