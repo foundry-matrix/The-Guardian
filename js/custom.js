@@ -40,7 +40,13 @@ $(document).ready(function(){
 	voices.map(function(voice){
 		for (i=0;i<characters.length; i++)
 			if (voice.name == characters[i]) {
-				character_images.push('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');	
+				console.log("found " + voice.name);
+				$('#charSelector').append('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');
+			}
+		});	
+		voices_loaded = true;
+		};
+			character_images.push('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');	
 		}
 	});
 
@@ -92,6 +98,12 @@ $(document).ready(function(){
 	var categories = ["technology","sport","politics"];
 	var articles = {};
 
+	// function setAttributes(element, attrs) {
+	//     for (var i = 1; i < arguments.length; i+=2) {
+	//         element.setAttribute(arguments[i], arguments[i+1]);
+	//  	  }
+	// }
+
 	function renderArticles(articles, category) {
 		var listItems = [];
 		articles[category].map(function(article){
@@ -101,33 +113,83 @@ $(document).ready(function(){
 			var item  = '<li>' +link +audio + '</li>';
 			listItems.push(item);
 		})
-
+		
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
 
+		// var li = document.getElementById("myTab").appendChild(document.createElement("li"));
+		// li.setAttribute("id", "tab-" + category);
+		// li.setAttribute("class", "active");
+		// var a = document.getElementById("tab-" + category).appendChild(document.createElement("a"));
+		// a.setAttribute("href", "#" + category + "link");
+		// a.setAttribute("data-toggle", "tab");
+
+		// setAttributes("a", "src", "http://example.com/something.jpeg", "height", "100%");
+
 		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
 		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles' class='articles-list'></ol></div>");
+
+	//	document.getElementById("tab-" + category).className = "";
+	//	document.getElementById(category + "link").className = "";
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
 		return;
 	}
 
+	// function getArticles(category) {
+	// 	$.ajax({
+	// 		url: "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
+	// 		dataType: 'jsonp',
+	// 		success: function(json){
+	// 		//	document.getElementById("myDiv").innerHTML = json.response.results;
+	// 			articles[category] = json.response.results;  
+	// 			renderArticles(articles, category);
+	// 		}
+	// 	});
+	// }
+
 	function getArticles(category) {
-		// tech articles
-		$.ajax({
-			url: "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
-			dataType: 'jsonp',
-			success: function(json){
-				articles[category] = json.response.results; // 
-				renderArticles(articles, category);
-			}
-		});
+
+		var url = "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw";
+	    var xmlhttp;
+
+	    if (window.XMLHttpRequest) {
+	        // code for IE7+, Firefox, Chrome, Opera, Safari
+	        xmlhttp = new XMLHttpRequest();
+	    } else {
+	        // code for IE6, IE5
+	        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	    }
+
+	    xmlhttp.onreadystatechange = function() {
+	        if (xmlhttp.readyState == 4 ) {
+	           if(xmlhttp.status == 200){
+	           		var data = JSON.parse(xmlhttp.response);
+					articles[category] = data.response.results;
+	            	renderArticles(articles, category); 
+	           }
+	           else if(xmlhttp.status == 400) {
+	              alert('There was an error 400')
+	           }
+	           else {
+	            //   alert('something else other than 200 was returned')
+	           }
+	        }
+	    }
+
+	    xmlhttp.open("GET", url, true);
+	    xmlhttp.send();
 	}
+
+	var t0 = performance.now();
 
 	categories.map(function(category) {
 		getArticles(category);
 	})
+
+	var t1 = performance.now();
+	console.log("Vanilla AJAX Call took: " + (t1 - t0) + " milliseconds.");
 
 
 	// Adding tab functionality 
