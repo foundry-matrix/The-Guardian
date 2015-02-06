@@ -1,3 +1,19 @@
+
+.character{
+	display: inline;
+	list-style-type: none;
+}
+
+.character img{
+	height: 50px;
+}
+
+#charSelector{
+margin-top: 20px;
+height: 100px;
+}
+
+
 .audio{
 	width: 10px;
 	margin: 1px 1px 3px 5px;

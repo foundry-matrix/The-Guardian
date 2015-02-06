@@ -3,6 +3,40 @@ $(document).ready(function(){
 
 	// adding an event listener to when the user clicks one of the audio-icons
 	$(document).on('click', ".audio_link" , function(){
+		console.log(".audio_link clicked");
+		if (window.speechSynthesis.speaking == true)
+		{
+			window.speechSynthesis.cancel();
+		}
+		else
+		{
+			var title = $(this).attr("id");
+			readHeadline(title);
+		} 
+	});
+	current_reader = 'Thomas';
+	id = "Thomas";
+
+$("#Thomas").css('height', "100px");
+
+	$("#charSelector").on('click', '.image',function(){
+	console.log("clicked char");
+	console.log($(this)[0]);
+	$(this[0]).fadeOut(500);
+	id = $(this).attr('id');
+	console.log(id);
+	$("#"+current_reader).animate({height: "50px"});
+	$("#"+id).animate({height: "100px"})
+	current_reader = id;
+});
+
+
+
+/*
+
+	$(".audio_link").click( function(){
+		console.log(".audio_link clicked");
+
 		if (window.speechSynthesis.speaking == true)
 		{
 			window.speechSynthesis.cancel();
@@ -14,28 +48,69 @@ $(document).ready(function(){
 		} 
 	});
 
-	voiceSelector = document.getElementById("voice");
+*/
 
-	// event thats triggered when the voices are ready. Populates the voice selector with options
-	window.speechSynthesis.onvoiceschanged = function(){
-	voices = speechSynthesis.getVoices();
-	voices.map(function(voice){
+	voices_loaded = false;
+	characters = ['Thomas','Ioana','Tarik','Diego', 
+	'Hysterical','Bruce','Alice', 'Nora','Xander','Amelie','Kyoko'];
+
+
+
+
+	voiceSelector = document.getElementById("voice");
+	charSelector = document.getElementById("charSelector");
+
+	function fetch_voices(){
+	voices.map(function(voice) {
 		var option = document.createElement('option');
 		option.name = voice.name;
 		option.innerHTML = voice.name;
 		voiceSelector.appendChild(option);
 	});
+	voices.map(function(voice){
+		for (i=0;i<characters.length; i++)
+			if (voice.name == characters[i]) {
+				console.log("found " + voice.name);
+				$('#charSelector').append('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');
+			}
+		});	
+	voices_loaded = true;
+	};
 
+
+
+
+
+
+
+	// event thats triggered when the voices are ready. Populates the voice selector with options
+
+	window.speechSynthesis.onvoiceschanged = function(){
+	console.log('onvoicechanges triggered');
+
+	voices = speechSynthesis.getVoices();
+	if (voices_loaded == false){
+	fetch_voices();
+	}
 }
+
+
 
 	// getting the web speech api to read the message, and fetching the choosen voice
 	function readHeadline(input){	
 	message = new SpeechSynthesisUtterance(input);
+	
 	message.voice = voices.filter(function(voice_alternative){ 
-		return voice_alternative.name == voiceSelector.value; 
+		return voice_alternative.name == id; 
 	})[0];
+
+	//message.voice = voices.filter(function(voice_alternative){ 
+	//	return voice_alternative.name == voiceSelector.value; 
+	//})[0];
 	window.speechSynthesis.speak(message);
 	}
+
+
 
 
 	// list of categories
@@ -45,7 +120,7 @@ $(document).ready(function(){
 	function renderArticles(articles, category) {
 		var listItems = [];
 		articles[category].map(function(article){
-			var link  = '<a href="' +article.webUrl + '" id="link">'+article.webTitle +'</a>';
+			var link  = '<a href="' +article.webUrl + '" id="link">'+ article.webTitle +'</a>';
 			var img   = '<img class="audio" src="img/audio.png">';
 			var audio = '<a class="audio_link" id="' + article.webTitle  +  '">' +img +'</a>';
 			var item  = '<li>' +link +audio + '</li>';
@@ -143,6 +218,10 @@ $(document).ready(function(){
 	 });
 
 	 console.log(categories);
+
+	$("#Thomas").animate({height: "100px"})
+
+	
 
 // end of JS
 });
