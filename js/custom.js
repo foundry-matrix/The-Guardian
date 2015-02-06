@@ -170,7 +170,7 @@ $("#Thomas").css('height', "100px");
 	              alert('There was an error 400')
 	           }
 	           else {
-	               alert('something else other than 200 was returned')
+	            //   alert('something else other than 200 was returned')
 	           }
 	        }
 	    }
@@ -179,9 +179,14 @@ $("#Thomas").css('height', "100px");
 	    xmlhttp.send();
 	}
 
+	var t0 = performance.now();
+
 	categories.map(function(category) {
 		getArticles(category);
 	})
+
+	var t1 = performance.now();
+	console.log("Vanilla AJAX Call took: " + (t1 - t0) + " milliseconds.");
 
 
 	// Adding tab functionality 
