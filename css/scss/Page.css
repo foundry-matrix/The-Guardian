@@ -151,11 +151,10 @@ button {
   text-transform: capitalize;
   margin-bottom: -11px; }
 
-.tab-content {
-  margin: 0 26%;
-  padding-left: 5%;
-  padding-right: 5%;
-  background-color: white; }
+.articles-list {
+  text-align: left;
+  display: inline-block;
+  width: 500px; }
 
 .tab-bar {
   text-align: center; }
