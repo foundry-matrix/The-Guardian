@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+	var j = 0;
+	current_reader = 'Nora';
+	id = "Nora";
+	voices_loaded = false;
+	characters = ['Thomas','Ioana','Tarik','Diego', 
+	'Hysterical','Bruce','Alice', 'Nora','Xander','Amelie','Kyoko'];
+	character_images = [];
 
 	// adding an event listener to when the user clicks one of the audio-icons
 	$(document).on('click', ".audio_link" , function(){
@@ -14,59 +21,22 @@ $(document).ready(function(){
 			readHeadline(title);
 		} 
 	});
-	current_reader = 'Thomas';
-	id = "Thomas";
 
-$("#Thomas").css('height', "100px");
+
 
 	$("#charSelector").on('click', '.image',function(){
-	console.log("clicked char");
-	console.log($(this)[0]);
-	$(this[0]).fadeOut(500);
-	id = $(this).attr('id');
-	console.log(id);
-	$("#"+current_reader).animate({height: "50px"});
-	$("#"+id).animate({height: "100px"})
-	current_reader = id;
-});
-
-
-
-/*
-
-	$(".audio_link").click( function(){
-		console.log(".audio_link clicked");
-
-		if (window.speechSynthesis.speaking == true)
-		{
-			window.speechSynthesis.cancel();
-		}
-		else
-		{
-			var title = $(this).attr("id");
-			readHeadline(title);
-		} 
+		id = $(this).attr('id');
+		console.log(id);
+		$("#"+current_reader).animate({height: "50px"});
+		$("#"+id).animate({height: "100px"})
+		current_reader = id;
 	});
-
-*/
-
-	voices_loaded = false;
-	characters = ['Thomas','Ioana','Tarik','Diego', 
-	'Hysterical','Bruce','Alice', 'Nora','Xander','Amelie','Kyoko'];
-
-
 
 
 	voiceSelector = document.getElementById("voice");
 	charSelector = document.getElementById("charSelector");
 
 	function fetch_voices(){
-	voices.map(function(voice) {
-		var option = document.createElement('option');
-		option.name = voice.name;
-		option.innerHTML = voice.name;
-		voiceSelector.appendChild(option);
-	});
 	voices.map(function(voice){
 		for (i=0;i<characters.length; i++)
 			if (voice.name == characters[i]) {
@@ -74,38 +44,55 @@ $("#Thomas").css('height', "100px");
 				$('#charSelector').append('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');
 			}
 		});	
+		voices_loaded = true;
+		};
+			character_images.push('<li class="character"><img class="image" src="img/' + voice.name +'.jpg" id= ' + voice.name + '></li>');	
+		}
+	});
+
+	animationLoop();
 	voices_loaded = true;
-	};
+	}
 
+	function animationLoop(){
+			$("#" + id).css({height: "100px"});
+		setTimeout(function(){ 
+			$(character_images[0]).css({height:'100px;'});
+			$('#charSelector').append(character_images[j]);
+			j++;
+			if (j<character_images.length){
+			animationLoop();
+			}
+			else if (j = character_images.length) {
 
+			}
+		}, 50)
+	}
 
 	// event thats triggered when the voices are ready. Populates the voice selector with options
 
 	window.speechSynthesis.onvoiceschanged = function(){
-	console.log('onvoicechanges triggered');
-
+	console.log('onvoicechanges triggered');	
 	voices = speechSynthesis.getVoices();
-	if (voices_loaded == false){
-	fetch_voices();
+
 	}
-}
+
+	$("#character_activator").click(function(){
+		$(this).animate({width: 'hide'}, 150 , function(){
+				fetch_voices();
+		});
+	});
 
 
 
 	// getting the web speech api to read the message, and fetching the choosen voice
 	function readHeadline(input){	
-	message = new SpeechSynthesisUtterance(input);
-	
+	message = new SpeechSynthesisUtterance(input);	
 	message.voice = voices.filter(function(voice_alternative){ 
 		return voice_alternative.name == id; 
 	})[0];
-
-	//message.voice = voices.filter(function(voice_alternative){ 
-	//	return voice_alternative.name == voiceSelector.value; 
-	//})[0];
 	window.speechSynthesis.speak(message);
 	}
-
 
 	// list of categories
 	var categories = ["technology","sport","politics"];
@@ -140,7 +127,7 @@ $("#Thomas").css('height', "100px");
 		// setAttributes("a", "src", "http://example.com/something.jpeg", "height", "100%");
 
 		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
-		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles' class='articles-list'></ol></div>");
 
 	//	document.getElementById("tab-" + category).className = "";
 	//	document.getElementById(category + "link").className = "";
@@ -207,7 +194,6 @@ $("#Thomas").css('height', "100px");
 
 	// Adding tab functionality 
 	$("#add").click(function(){
-
 		var exists;
 		var search = document.getElementById("input").value;
 		var searchLower = search.toLowerCase();
@@ -266,13 +252,6 @@ $("#Thomas").css('height', "100px");
 		$("#tab-" + categoryindex).addClass("active");
 		$("#" + categoryindex + "link").addClass("active in");	
 	 });
-
-	 console.log(categories);
-
-	$("#Thomas").animate({height: "100px"})
-
-	
-
 // end of JS
 });
 

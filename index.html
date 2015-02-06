@@ -30,35 +30,61 @@
 
   <body>
 
-        <div id="tfheader">
+      <!-- HEADER -->
+      <div id="tfheader">
+            <img class ="homepage-logo" src="img/guardianlogo.jpg">
+            <div class="tfclear"></div>
+      </div>
 
-          <h1 id="title">Guardian News</h1>
+     <!-- TABS, SEARCH AND ARTICLES -->
 
-          <h7 id="category">Todays News</h7>
-<br>
-<div class="option">
-    <select name="voice" id="voice" class="form-control select_voice"></select>
-</div>
-          <form id="tfnewsearch" onsubmit="return find()">
+     <div class="container">
+
+        <div class="row search-bar">
+            <div class="col-md-12 col-centered tab-bar">
+
+                <!-- hide this voice-dropdown -->
+                <div class="option voice-dropdown">
+                  <select name="voice" id="voice" class="form-control select_voice"></select>
+                </div>
+                <!-- end voice dropdown -->
+
+                <form id="tfnewsearch" onsubmit="return find()">
+                    <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+                    <input id="add" type="submit" value="Add" class="tfbutton">
+                </form>
+            </div>
+        </div>
+
+
+        <!-- TITLE TABS -->
+        <div class="row title-tabs">
+            <div class="col-md-8 col-centered title-container">
+               <center> <ul id="myTab" class="nav nav-tabs"></center>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ARTICLES -->
+        <div class="row article-content">
+           <center>  
+            <div id="myTabContent" class="tab-content"> </div></center>
             
-            <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+            <center><input type="submit" id="character_activator" class="btn" value="Languages">
+            </center>
+<center>
+            <ul id="charSelector"></ul>
 
-            <input id="add" type="submit" value="Add" class="tfbutton">
-          
-          </form>
+          </center>
+        </div>
 
-        <div class="tfclear"></div>
+
+
 
       </div>
       
-      <ul id="myTab" class="nav nav-pills">
-      </ul>
 
-      <div id="myTabContent" class="tab-content">
-      </div>
-
-      <ul id="charSelector"></ul>
-
+    <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <!-- jQuery -->
