@@ -1,4 +1,6 @@
 // close icons on the tabs	
+$padding-centralise: 23%;
+
 
 .fa-times{
 	float:right;
@@ -6,4 +8,47 @@
 	bottom:42px;
 	font-size:0.75em;
 
+}
+
+.select_voice {
+	display:none;
+}
+
+#tfnewsearch {
+	padding: 0 $padding-centralise;
+}
+
+.nav-tabs{
+	padding: 0 $padding-centralise;
+	text-align:center;
+}
+
+.title-container{
+	display:block;
+	margin: 0 auto;
+
+}
+// .articles-list {
+// 	padding-left:34%;
+// }
+
+.tab-content {
+	margin: 0 21%;
+	padding-left:16%;
+	padding-right:5%;
+}
+
+.tab-bar {
+	text-align:center;
+}
+
+#myTab li{
+	// float: left;
+    // margin-left: auto ;
+    // margin-right: auto ;
+    display:inline;
+}
+// languages icons
+#charSelector{
+	text-align:center;
 }

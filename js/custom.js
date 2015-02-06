@@ -131,7 +131,7 @@ $("#Thomas").css('height', "100px");
 		$("div").removeClass("active in");
 
 		$("#myTab").append("<li id='tab-" + category + "'class='active'><a href='#" + category + "link' data-toggle='tab'>" + category + "</a>" + '<i id='+ category + ' class="fa fa-times">' + "</i></li>");
-		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles'></ol></div>");
+		$("#myTabContent").append("<div class='tab-pane fade active in' id='" + category + "link'><ol id = '" + category + "-articles' class='articles-list'></ol></div>");
 
 		var id = '#'+ category +'-articles'
 		$(id).append(listItems.join(""));
