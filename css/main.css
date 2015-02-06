@@ -47,7 +47,7 @@ div.option{
 	background-color:#c3dfef;
 }
 #tfnewsearch{
-	float:right;
+	/*float:right;*/
 	padding-bottom: 8px;
 	margin-right: 6px;
 	display: inline-block;

@@ -110,10 +110,45 @@ button {
 .tab-content {
   margin-left: 10px; }
 
+.col-centered {
+  float: none;
+  margin: 0 auto; }
+
+#tfheader {
+  background-color: white; }
+
 .fa-times {
   float: right;
   position: relative;
   bottom: 42px;
   font-size: 0.75em; }
+
+.select_voice {
+  display: none; }
+
+#tfnewsearch {
+  padding: 0 23%; }
+
+.nav-tabs {
+  padding: 0 23%;
+  text-align: center; }
+
+.title-container {
+  display: block;
+  margin: 0 auto; }
+
+.tab-content {
+  margin: 0 21%;
+  padding-left: 16%;
+  padding-right: 5%; }
+
+.tab-bar {
+  text-align: center; }
+
+#myTab li {
+  display: inline; }
+
+#charSelector {
+  text-align: center; }
 
 /*# sourceMappingURL=Page.css.map */
