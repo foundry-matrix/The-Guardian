@@ -7,6 +7,7 @@ $padding-centralise: 23%;
 	position:relative;
 	bottom:42px;
 	font-size:0.75em;
+	padding-right:3px;
 
 }
 
@@ -16,16 +17,20 @@ $padding-centralise: 23%;
 
 #tfnewsearch {
 	padding: 0 $padding-centralise;
+	margin-bottom:24px;
 }
 
 .nav-tabs{
 	padding: 0 $padding-centralise;
 	text-align:center;
+	border-bottom:none!important;
 }
 
 .title-container{
 	display:block;
 	margin: 0 auto;
+	text-transform:capitalize;
+	margin-bottom:-11px;
 
 }
 // .articles-list {
@@ -33,9 +38,10 @@ $padding-centralise: 23%;
 // }
 
 .tab-content {
-	margin: 0 21%;
-	padding-left:16%;
+	margin: 0 26%;
+	padding-left:5%;
 	padding-right:5%;
+	background-color:white;
 }
 
 .tab-bar {
