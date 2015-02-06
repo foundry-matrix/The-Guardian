@@ -1,9 +1,22 @@
-
+#character_activator{
+	margin: 10px;
+}
 .character{
 	display: inline;
 	list-style-type: none;
+	overflow: visible;
+	width: 50px;
+}
+.character_wrapper{
+	
 }
 
+.articles-list{
+	text-align: left;
+	display: inline-block;
+	width:500px;
+
+}
 .character img{
 	height: 50px;
 }
