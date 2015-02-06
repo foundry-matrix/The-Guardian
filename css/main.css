@@ -11,6 +11,12 @@
 	
 }
 
+.articles-list{
+	text-align: left;
+	display: inline-block;
+	width:500px;
+
+}
 .character img{
 	height: 50px;
 }

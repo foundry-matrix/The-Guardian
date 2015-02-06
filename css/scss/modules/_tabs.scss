@@ -28,15 +28,23 @@ $padding-centralise: 23%;
 	margin: 0 auto;
 
 }
-// .articles-list {
-// 	padding-left:34%;
-// }
+
+.articles-list{
+	text-align: left;
+	display: inline-block;
+	width:500px;
+}
+
 
 .tab-content {
-	margin: 0 21%;
+/*	margin: 0 21%;
 	padding-left:16%;
 	padding-right:5%;
+*/
 }
+
+
+
 
 .tab-bar {
 	text-align:center;
