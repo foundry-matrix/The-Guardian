@@ -41,17 +41,31 @@
      <div class="container">
 
         <div class="row search-bar">
-            <form id="tfnewsearch" onsubmit="return find()">
-                <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
-                <input id="add" type="submit" value="Add" class="tfbutton">
-            </form>
+            <div class="col-md-12 col-centered tab-bar">
+
+                <!-- hide this voice-dropdown -->
+                <div class="option voice-dropdown">
+                  <select name="voice" id="voice" class="form-control select_voice"></select>
+                </div>
+                <!-- end voice dropdown -->
+
+                <form id="tfnewsearch" onsubmit="return find()">
+                    <input id="input" type="text" class="tftextinput" name="q" size="21" maxlength="120" value="Food">
+                    <input id="add" type="submit" value="Add" class="tfbutton">
+                </form>
+            </div>
         </div>
 
+
+        <!-- TITLE TABS -->
         <div class="row title-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-            </ul>
+            <div class="col-md-8 col-centered title-container">
+                <ul id="myTab" class="nav nav-tabs">
+                </ul>
+            </div>
         </div>
 
+        <!-- ARTICLES -->
         <div class="row article-content">
             <div id="myTabContent" class="tab-content"> </div>
             <ul id="charSelector"></ul>
