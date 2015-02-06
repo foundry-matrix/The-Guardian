@@ -7,6 +7,7 @@ $padding-centralise: 23%;
 	position:relative;
 	bottom:42px;
 	font-size:0.75em;
+	padding-right:3px;
 
 }
 
@@ -16,16 +17,25 @@ $padding-centralise: 23%;
 
 #tfnewsearch {
 	padding: 0 $padding-centralise;
+	margin-bottom:24px;
 }
 
 .nav-tabs{
 	padding: 0 $padding-centralise;
 	text-align:center;
+	margin-bottom:16px;
+	}
+
+.nav-tabs>li {
+
+margin-bottom: -12px!important;
 }
 
 .title-container{
 	display:block;
 	margin: 0 auto;
+	text-transform:capitalize;
+	margin-bottom:-11px;
 
 }
 
@@ -35,12 +45,12 @@ $padding-centralise: 23%;
 	width:500px;
 }
 
+.articles-list li{
+	// border: 1px solid black;
+	margin-bottom:8px;
+}
 
 .tab-content {
-/*	margin: 0 21%;
-	padding-left:16%;
-	padding-right:5%;
-*/
 }
 
 
@@ -48,6 +58,7 @@ $padding-centralise: 23%;
 
 .tab-bar {
 	text-align:center;
+	margin-top:14px;
 }
 
 #myTab li{
@@ -55,8 +66,20 @@ $padding-centralise: 23%;
     // margin-left: auto ;
     // margin-right: auto ;
     display:inline;
+
+}
+
+.tftextinput{
+	margin-right:-5px;
 }
 // languages icons
 #charSelector{
 	text-align:center;
+}
+
+#character_activator{
+	// background-color:#004587;
+	color:white;
+	background: -webkit-gradient(linear, left top, left bottom, from(#004587), to(#0078a5));
+	background: -moz-linear-gradient(top,  #004587,  #0078a5);
 }
