@@ -79,10 +79,6 @@ $("#Thomas").css('height', "100px");
 
 
 
-
-
-
-
 	// event thats triggered when the voices are ready. Populates the voice selector with options
 
 	window.speechSynthesis.onvoiceschanged = function(){
@@ -111,8 +107,6 @@ $("#Thomas").css('height', "100px");
 	}
 
 
-
-
 	// list of categories
 	var categories = ["technology","sport","politics"];
 	var articles = {};
@@ -127,6 +121,8 @@ $("#Thomas").css('height', "100px");
 			listItems.push(item);
 		})
 
+	//	var li = 
+
 		$("li").removeClass("active");
 		$("div").removeClass("active in");
 
@@ -138,16 +134,49 @@ $("#Thomas").css('height', "100px");
 		return;
 	}
 
+	// function getArticles(category) {
+	// 	$.ajax({
+	// 		url: "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
+	// 		dataType: 'jsonp',
+	// 		success: function(json){
+	// 		//	document.getElementById("myDiv").innerHTML = json.response.results;
+	// 			articles[category] = json.response.results;  
+	// 			renderArticles(articles, category);
+	// 		}
+	// 	});
+	// }
+
 	function getArticles(category) {
-		// tech articles
-		$.ajax({
-			url: "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw",
-			dataType: 'jsonp',
-			success: function(json){
-				articles[category] = json.response.results; // 
-				renderArticles(articles, category);
-			}
-		});
+
+		var url = "http://content.guardianapis.com/search?q=" + category + "&api-key=v2jpnga8trgw9x4p3u84yvrw";
+	    var xmlhttp;
+
+	    if (window.XMLHttpRequest) {
+	        // code for IE7+, Firefox, Chrome, Opera, Safari
+	        xmlhttp = new XMLHttpRequest();
+	    } else {
+	        // code for IE6, IE5
+	        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	    }
+
+	    xmlhttp.onreadystatechange = function() {
+	        if (xmlhttp.readyState == 4 ) {
+	           if(xmlhttp.status == 200){
+	           		var data = JSON.parse(xmlhttp.response);
+					articles[category] = data.response.results;
+	            	renderArticles(articles, category); 
+	           }
+	           else if(xmlhttp.status == 400) {
+	              alert('There was an error 400')
+	           }
+	           else {
+	               alert('something else other than 200 was returned')
+	           }
+	        }
+	    }
+
+	    xmlhttp.open("GET", url, true);
+	    xmlhttp.send();
 	}
 
 	categories.map(function(category) {
